@@ -143,7 +143,9 @@ if(System=="Linux"){
 #  Get antibody information if present
 AB1<-grepl("IGKV",Data_0[,"Gene.Symbol"])&grepl("Immunoglobulin",Data_0[,"Description"])
 AB2<-grepl("IGLV",Data_0[,"Gene.Symbol"])&grepl("Immunoglobulin",Data_0[,"Description"])
-ABs<-AB1|AB2
+AB3<-grepl("IGHG",Data_0[,"Gene.Symbol"])&grepl("Immunoglobulin",Data_0[,"Description"])
+AB4<-grepl("IGLL",Data_0[,"Gene.Symbol"])&grepl("Immunoglobulin",Data_0[,"Description"])
+ABs<-AB1|AB2|AB3|AB4
 
 #  Colors
 Colors<-c("#800000","#68BC44","#BE29EC","black")
@@ -207,7 +209,7 @@ if(sum(ABs)>0){
 	theme(legend.position = "none",axis.title.y=element_text(family=FONT),axis.title.x=element_text(family=FONT))+
 	guides(fill=guide_legend(title=""))
 
-	ggsave(paste0(imgdir,Name,"_",Group2,"_vs_",Group1,"_Lg2FC_",signif(LogCutoff,3),"_VPlot_wAB.pdf"),width=16,height=10,units="in",device="pdf",dpi=600)
+	ggsave(paste0(imgdir,Name,"_",Group2,"_vs_",Group1,"_Lg2FC_",signif(LogCutoff,3),"_VPlot_wAB.pdf"),width=16,height=10,units="in",device=cairo_pdf,dpi=600)
 }
 
 #  Generate plot without antibody data
@@ -248,4 +250,4 @@ theme(legend.position = "none",axis.title.y=element_text(family=FONT),axis.title
 guides(fill=guide_legend(title=""))
 
 pdf(NULL)
-ggsave(paste0(imgdir,Name,"_",Group2,"_vs_",Group1,"_Lg2FC_",signif(LogCutoff,3),"_VPlot.pdf"),width=16,height=10,units="in",device="pdf",dpi=600)
+ggsave(paste0(imgdir,Name,"_",Group2,"_vs_",Group1,"_Lg2FC_",signif(LogCutoff,3),"_VPlot.pdf"),width=16,height=10,units="in",device=cairo_pdf,dpi=600)
