@@ -47,7 +47,7 @@ if(substr(WD,nchar(WD),nchar(WD))!="/"){
 #  Check if database was given
 if(!exists("Database")){
 	print("No Database was given, defaulting to data directory")
-	Database=paste0(WD,"data/Uniprot_9-21-18_wHMPAS.tab")
+	Database=paste0(WD,"/Uniprot_9-21-18_wHMPAS.tab")
 }
 
 Dirs<-list.dirs(WD,recursive=FALSE)
@@ -90,7 +90,7 @@ for(i in 1:(length(Dirs)-9)){
 	}else{
 		Data<-Data[order(Data$logFC,decreasing=TRUE),]
 	}
-	output<-Data[,c("Gene.Symbol","Accession","logFC","P.Value","Membrane")]
+	output<-Data[,c("Gene.Symbol","Accession","logFC","P.Value","adj.P.Val","Membrane")]
 	Sheet=paste0(Names[i])
 	print(Sheet)
 	write.xlsx(output,file=paste0(WD,"Supplemental_Data_1.xlsx"),sheetName=Sheet,append=TRUE,col.names=TRUE,row.names=FALSE)
@@ -116,7 +116,7 @@ for(i in (length(Dirs)-8):length(Dirs)){
 	}else{
 		Data<-Data[order(Data$logFC,decreasing=TRUE),]
 	}
-	output<-Data[,c("Gene.Symbol","Accession","logFC","P.Value","Membrane")]
+	output<-Data[,c("Gene.Symbol","Accession","logFC","P.Value","adj.P.Val","Membrane")]
 	Sheet=paste0(Names[i])
 	print(Sheet)
 	write.xlsx(output,file=paste0(WD,"Supplemental_Data_2.xlsx"),sheetName=Sheet,append=TRUE,col.names=TRUE,row.names=FALSE)
