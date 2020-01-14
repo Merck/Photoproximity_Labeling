@@ -32,13 +32,15 @@ if [ -z "$REMOVEAB" ];then
 	echo "If you want this changed, add in a 'export REMOVEAB=TRUE' line in your wrapper."
 	REMOVEAB=FALSE
 fi
+#  Set special coloring list for when proteins are below a cutoff but are still colored
+SPECIAL=${SPECIAL:-none}
 
 #  Run pipeline
 Rscript Filter_by_PeptideCount.r $NAME $TARGET $TARGETNAME $FILTER $NAME.csv
 Rscript Correlations_IQTMT_proteinlvl.r $NAME $TARGET $TARGETNAME $METRIC $NORM $NAME"_"FilterPep_$FILTER.csv $REMOVEAB
 Rscript Differential_Abundance_IQTMT_proteinlvl.r $NAME $TARGET $TARGETNAME $GROUP2 $GROUP1 $METRIC $NORM $PAIRED
 Rscript MakeGeneList.r $NAME $TARGET $METRIC $NORM $LG2
-Rscript VolcanoPlots_IQTMT_proteinlvl.r $NAME $TARGET $TARGETNAME $GROUP2 $GROUP1 $METRIC $NORM $LG2 $ASSOC $EXTRA $EXCLUDE
+Rscript VolcanoPlots_IQTMT_proteinlvl.r $NAME $TARGET $TARGETNAME $GROUP2 $GROUP1 $METRIC $NORM $LG2 $ASSOC $EXTRA $EXCLUDE $SPECIAL
 
 export BINDIR=$(pwd)
 

@@ -30,6 +30,7 @@ export FILTER=1
 export ASSOC="CD45_Associated_Proteins.txt"
 export EXTRA="CD45_Extra_Labels.txt"
 export EXCLUDE="CD45_Exclude.txt"
+export SPECIAL="CD45_Special_p70.txt"
 export LG2=1
 
 #  Correlation Targets
