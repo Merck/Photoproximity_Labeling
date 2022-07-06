@@ -1,3 +1,6 @@
+# New Version Available:
+hello a new version of this code base has been released as a new project available here: https://github.com/Merck/MicroMap_Pipeline, this was done due to the fact the code base has vast changes from this repo. This repo will be archived and new work will be done on the new repo.
+
 #  Introduction
 
 ###  Written by Cory Haley White
